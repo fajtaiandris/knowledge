@@ -4,7 +4,8 @@ Extract of the [Stanford NER CRF FAQ](https://nlp.stanford.edu/software/crf-faq.
 
 ## 1. Creating the training data
 
-1. Break the raw data text into tokens (words).
+1. Break the raw data text into tokens (words).  
+A blank line separates two "documents".
 ```bash
 $ java -cp stanford-ner.jar edu.stanford.nlp.process.PTBTokenizer \
        data.txt > data.tok
