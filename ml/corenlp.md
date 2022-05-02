@@ -19,7 +19,7 @@ $ perl -ne 'chomp; print "$_\tO\n"' data.tok > data.tsv
 
 ## 2. Train the model
 
-1. Create a properties file (.prop).
+1. Create a properties file (.prop). Premade features are listed [here](https://nlp.stanford.edu/nlp/javadoc/javanlp/edu/stanford/nlp/ie/NERFeatureFactory.html).
 ```bash
 #                                                  location of the training file
 trainFile = data.tsv
