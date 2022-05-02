@@ -1,4 +1,4 @@
-# 🌱 Knowledge base
+# 🌱 Knowledge Base
 
 This is my personal knowledge base.
 
