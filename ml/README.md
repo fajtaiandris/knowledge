@@ -1,3 +1,3 @@
 # 🧠 Machine Learning
 
-- [📙 Stanford CoreNLP](./corenlp.md)
+- [📙 Using Stanford CoreNLP](./corenlp.md)
