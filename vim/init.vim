@@ -21,7 +21,8 @@ call plug#begin('~/.vim/plugged')
 	" világos színséma
     Plug 'cormacrelf/vim-colors-github'
 	" markdown linkeken navigálás
-	Plug 'https://github.com/prashanthellina/follow-markdown-links'
+	Plug 'godlygeek/tabular'
+	Plug 'preservim/vim-markdown'
 call plug#end()
 
 " színséma beállítása
@@ -59,3 +60,6 @@ let g:gitgutter_sign_removed_first_line = '▁'
 let g:gitgutter_sign_modified_removed = '█'
 
 set updatetime=100
+
+" folding kikapcsolása markdown fájloknál
+let g:vim_markdown_folding_disabled = 1
