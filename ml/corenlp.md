@@ -18,7 +18,7 @@ $ perl -ne 'chomp; print "$_\tO\n"' data.tok > data.tsv
 
 3. Annotate the tokens manually.
 
-Here's a [🐍 script](./corenlp.py) for these tasks.
+Here's a 🐍 [lib](./corenlp.py) and [cli](./trainer.py) for these tasks.
 
 ## 2. Train the model
 

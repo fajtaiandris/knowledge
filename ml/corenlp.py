@@ -19,6 +19,41 @@ class CoreNLP:
 
         self.jar_path = jar_path
 
+    def train(self, training_data_path, prop_file_path):
+        """
+        Trains the classifier with the given prop file on the given data.
+        The output will be saved to ./ .
+
+        TODO: output_path
+
+        Parameters
+        ----------
+        training_data_path : str
+            The path to the annotated training files.
+        prop_file_path : str
+            The path to the .prop file of the model.
+        """
+
+        self._update_prop_(prop_file_path, training_data_path)
+        command = f"java -cp {self.jar_path} edu.stanford.nlp.ie.crf.CRFClassifier -prop {prop_file_path}"
+        output = run_cmd(command)
+        return output
+
+    def test_for_file(self, classifier_path, test_file_path):
+        """
+        TODO batch testing
+
+        Parameters
+        ----------
+        classifier : str
+            The path to the trained classifier.
+        test_file_path : str
+            The path to the annotated .tsv test file.
+        """
+
+        command = f"java -cp {self.jar_path} edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier {classifier_path} -testFile {test_file_path}"
+        return run_cmd(command)
+
     def tokenize(self, input_dir, output_dir):
         """
         Takes all files in the `input_dir` and saves them tokenized in the
@@ -96,7 +131,7 @@ class CoreNLP:
         output_dir : str
             The path to save the annotated files.
         """
-        
+
         tmp1 = make_tmp_dir()
         tmp2 = make_tmp_dir()
         token_start = "TOKEN"
@@ -106,7 +141,7 @@ class CoreNLP:
         remove_dir(tmp1)
         remove_dir(tmp2)
 
-#---------------- SUB DEFS FOR convert_raw_with_ann_to_tsv ---------------------
+#-------------------------------------------------------------------------------
     def _get_annotation_(self, ann_text):
         lines = ann_text.split("\n")
         entities = {}
@@ -173,6 +208,15 @@ class CoreNLP:
             raw_w_entities = self._get_injected_raw_(raw, annotations[file_wo_ext+".ann"]["entities"], token_start)
             write_file(output_path+f+".txt", raw_w_entities)
 
+    def _update_prop_(self, prop_file_path, training_data_path):
+        training_files = get_files(training_data_path)
+        training_list = ""
+        for f in training_files:
+            training_list += training_data_path + f + ","
+        training_list = training_list[:-1]
+        prop = get_text(prop_file_path)
+        prop = re.sub("trainFileList =.*", "trainFileList = "+training_list, prop)
+        write_file(prop_file_path, prop)
 
 
 def make_tmp_dir():
