@@ -7,11 +7,31 @@ from os.path import isfile, join
 from datetime import datetime
 
 class CoreNLP:
-    "TODO: DOCS"
+    """This is a wrapper class for the Stanford CoreNLP cli commands."""
+
     def __init__(self, jar_path):
+        """
+        Parameters
+        ----------
+        jar_path : str
+            The path to Stanford CoreNLP's jar file.
+        """
+
         self.jar_path = jar_path
 
     def tokenize(self, input_dir, output_dir):
+        """
+        Takes all files in the `input_dir` and saves them tokenized in the
+        `output_dir`.
+
+        Parameters
+        ----------
+        input_dir : str
+            The path to the files to be tokenized.
+        output_dir : str
+            The path to save the tokenized files.
+        """
+
         output = ""
         for f in get_files(input_dir):
             command = f"java -cp {self.jar_path} edu.stanford.nlp.process.PTBTokenizer {input_dir+f} > {output_dir+f+'.tok'}"
@@ -19,6 +39,19 @@ class CoreNLP:
         return output
 
     def annotate_tokenized_to_other(self, input_dir, output_dir):
+        """
+        Takes all files in the `input_dir` (that are already tokenized) and
+        creates a .tsv annotation file for each in the `output_dir`. Every token
+        will be assigned to O (other) entity type.
+
+        Parameters
+        ----------
+        input_dir : str
+            The path to the files to be annotated.
+        output_dir : str
+            The path to save the annotated files.
+        """
+
         output = ""
         for f in get_files(input_dir):
             command = f"perl -ne 'chomp; print \"$_\tO\n\"' {input_dir+f} > {output_dir+f.split('.tok')[0]+'.tsv'}"
@@ -27,8 +60,18 @@ class CoreNLP:
 
     def annotate_raw_to_other(self, input_dir, output_dir):
         """
-        Does tokenize() and annotate_tokenized_to_other() as well
+        Takes all files in the `input_dir` and both tokenizes and annotates
+        them. The output files will be saved to the `ȯutput_dir`. In between
+        files (only tokenized) are not saved.
+
+        Parameters
+        ----------
+        input_dir : str
+            The path to the files to be tokenized and annotated.
+        output_dir : str
+            The path to save the annotated files.
         """
+
         output = ""
         tmp_dir = make_tmp_dir()
         output += self.tokenize(input_dir, tmp_dir)
@@ -37,6 +80,23 @@ class CoreNLP:
         return output
 
     def convert_raw_with_ann_to_tsv(self, text_dir, ann_dir, output_dir):
+        """
+        This is specifically for the Markup annotation tool, which exports to
+        .ann annotation files, but CoreNLP requires .tsv format.
+
+        The corresponding files in the `text_dir` and `ann_dir` should have the
+        same name, only different extenstion. (eg. file.txt, file.ann)
+
+        Parameters
+        ----------
+        text_dir : str
+            The path to the raw texts.
+        ann_dir : str
+            The path to the .ann files
+        output_dir : str
+            The path to save the annotated files.
+        """
+        
         tmp1 = make_tmp_dir()
         tmp2 = make_tmp_dir()
         token_start = "TOKEN"
