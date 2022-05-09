@@ -1,6 +1,7 @@
 # 📙 Using Stanford CoreNLP
 
 Extract of the [Stanford NER CRF FAQ](https://nlp.stanford.edu/software/crf-faq.html#a).
+Here's a 🐍 [lib](./corenlp.py) and [cli](./trainer.py) for the following tasks.
 
 ## 1. Creating the training data
 
@@ -18,7 +19,6 @@ $ perl -ne 'chomp; print "$_\tO\n"' data.tok > data.tsv
 
 3. Annotate the tokens manually.
 
-Here's a 🐍 [lib](./corenlp.py) and [cli](./trainer.py) for these tasks.
 
 ## 2. Train the model
 
