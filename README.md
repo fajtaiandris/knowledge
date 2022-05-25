@@ -5,6 +5,7 @@ This is my personal knowledge base.
 - [🐍 Python](./python/README.md)
 - [🫖 Javascript](./js/README.md)
 - [☕️ Java](./java/README.md)
+- [🐱 NestJS](./nest/README.md)
 - [🐋 Docker](./docker/README.md)
 - [🧠 Machine Learning](./ml/README.md)
 - [📝 Vim](./vim/README.md)
