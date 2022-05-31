@@ -12,3 +12,4 @@ This is my personal knowledge base.
 - [️🗄️ Git](./git/README.md)
 - [🐚 Bash](./bash/README.md)
 - [🔧 Tools](./one-pagers/tools.md)
+- [🤝 Scrum Guide](./one-pagers/scrum.md)
