@@ -6,6 +6,7 @@ This is my personal knowledge base.
 - [🫖  Javascript](./js/README.md)
 - [☕️ Java](./java/README.md)
 - [🐱 NestJS](./nest/README.md)
+- [👀 React](./react/README.md)
 - [🐋 Docker](./docker/README.md)
 - [🧠 Machine Learning](./ml/README.md)
 - [📝 Vim](./vim/README.md)
@@ -13,3 +14,4 @@ This is my personal knowledge base.
 - [🐚 Bash](./bash/README.md)
 - [🔧 Tools](./one-pagers/tools.md)
 - [🤝 Scrum Guide](./one-pagers/scrum.md)
+- [⛈️  WebStorm](./one-pagers/webstorm.md)
