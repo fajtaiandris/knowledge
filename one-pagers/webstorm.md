@@ -4,4 +4,4 @@
 `Alt + <NUMBER>`     - open up the corresponding toolbox (1 - Project, 9 - Git)  
 `Alt + Shift + A`    - search actions  
 `Alt + F12`          - open terminal  
-`Ctrl + Alt + H`     - reformat code
+`Ctrl + Alt + L`     - reformat code
